@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import TodoForm from "./TodoForm"
+import TodoForm from './TodoForm'
+import Todo from './Todo'
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -14,10 +15,21 @@ const TodoList = () => {
     setTodos(newTodos)
   }
 
+  const completeTodo = id => {
+    let updateTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.isComplet = !todo.isComplete
+      }
+      return todo
+    })
+    setTodos(updateTodos);
+  }
+
   return (
     <div>
       <h1>Test</h1>
-      <TodoForm onSubmit={addTodo}/>
+      <TodoForm onSubmit={addTodo} />
+      <Todo todos={todos} completeTodo={completeTodo} />
     </div>
   )
 }
