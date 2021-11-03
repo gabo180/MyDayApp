@@ -8,6 +8,7 @@ const Todo = ({todos, completeTodo, removeTodo, editTodo}) => {
     id: null,
     value: ''
   })
+  const [showBtn, setShowBtn] = useState({ state: false, index: 0 });
 
   const submitEdit = value => {
     editTodo(edit.id, value);
@@ -23,15 +24,22 @@ const Todo = ({todos, completeTodo, removeTodo, editTodo}) => {
 
   return todos.map((todo, index) => (
     <div
+
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key={index}
+      onMouseEnter={() => setShowBtn({ state: true, index: index })}
+			onMouseLeave={() => setShowBtn({ state: false, index: 0 })}
     >
       <div key={todo.id} onClick={() => completeTodo(todo.id)}>
         {todo.text}
       </div>
       <div className='icons'>
+      {showBtn.state === true && showBtn.index === index ? (
+        <>
         <BsTrash className='remove-icon' onClick={() => removeTodo(todo.id)}/>
         <MdOutlineEdit className='edit-icon' onClick={() => setEdit({id: todo.id, value: todo.text})}/>
+    </>) : ('')}
+
       </div>
     </div>
   ))
