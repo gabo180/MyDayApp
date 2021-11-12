@@ -9,7 +9,6 @@
   <li><h3>JS.</h3></li>
   <li><h3>HTML5.</h3></li>
   <li><h3>CSS3.</h3></li>
-  <li><h3>Rest API.</h3></li>
 </ul>
 
 ## Features:
