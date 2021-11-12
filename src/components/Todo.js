@@ -18,13 +18,14 @@ const Todo = ({todos, completeTodo, removeTodo, editTodo}) => {
     })
   }
 
+
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitEdit} />;
   }
 
-  return todos.map((todo, index) => (
+  let list = todos.map((todo, index) => (
+    <>
     <div
-
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key={index}
       onMouseEnter={() => setShowBtn({ state: true, index: index })}
@@ -38,12 +39,15 @@ const Todo = ({todos, completeTodo, removeTodo, editTodo}) => {
         <>
         <BsTrash className='remove-icon' onClick={() => removeTodo(todo.id)}/>
         <MdOutlineEdit className='edit-icon' onClick={() => setEdit({id: todo.id, value: todo.text})}/>
-    </>) : ('')}
-
+        </>) : ('')}
       </div>
     </div>
+    </>
   ))
 
+  return (
+    list
+  )
 }
 
 export default Todo;
